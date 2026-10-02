@@ -1,61 +1,179 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Password Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CRYPTX | Password Generator</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="container">
+    <!-- Animated background -->
+    <div class="grid"></div>
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
 
-        <h1>Password Generator</h1>
+    <main class="container">
 
-        <div class="output">
-            <input type="text" id="password" readonly>
-            <button onclick="copyPassword()">Copy</button>
+        <div class="top">
+            <span class="status"></span>
+            <span>CRYPTX SECURITY SYSTEM</span>
+            <span class="version">v2.6</span>
         </div>
 
-        <div class="option">
-            <label>Password Length:</label>
-            <input type="number" id="length" value="12" min="4" max="50">
+        <h1>
+            PASS<span>WORD</span>
+        </h1>
+
+        <p class="subtitle">
+            // GENERATE YOUR DIGITAL IDENTITY
+        </p>
+
+        <!-- Password display -->
+        <div class="password-box">
+
+            <div class="password-header">
+                <span>GENERATED KEY</span>
+                <span id="strengthText">SECURE</span>
+            </div>
+
+            <div class="password-display">
+
+                <input
+                    type="text"
+                    id="password"
+                    value="CLICK GENERATE"
+                    readonly
+                >
+
+                <button onclick="copyPassword()" id="copyBtn">
+                    ⧉
+                </button>
+
+            </div>
+
+            <!-- Strength bar -->
+            <div class="strength-container">
+                <div id="strengthBar"></div>
+            </div>
+
         </div>
 
-        <div class="option">
-            <label>
-                <input type="checkbox" id="uppercase" checked>
-                Uppercase (A-Z)
-            </label>
+
+        <!-- Settings -->
+        <div class="settings">
+
+            <div class="section-title">
+                <span>01</span>
+                CONFIGURATION
+            </div>
+
+            <!-- Length -->
+            <div class="length-section">
+
+                <div class="label-row">
+                    <label>PASSWORD LENGTH</label>
+                    <span id="lengthValue">16</span>
+                </div>
+
+                <input
+                    type="range"
+                    id="length"
+                    min="4"
+                    max="50"
+                    value="16"
+                    oninput="updateLength()"
+                >
+
+            </div>
+
+
+            <!-- Character options -->
+
+            <div class="section-title">
+                <span>02</span>
+                CHARACTER MATRIX
+            </div>
+
+            <div class="options">
+
+                <label class="option">
+                    <input type="checkbox" id="uppercase" checked>
+                    <span class="custom-check">✓</span>
+
+                    <div>
+                        <b>UPPERCASE</b>
+                        <small>A B C D E F</small>
+                    </div>
+                </label>
+
+
+                <label class="option">
+                    <input type="checkbox" id="lowercase" checked>
+                    <span class="custom-check">✓</span>
+
+                    <div>
+                        <b>LOWERCASE</b>
+                        <small>a b c d e f</small>
+                    </div>
+                </label>
+
+
+                <label class="option">
+                    <input type="checkbox" id="numbers" checked>
+                    <span class="custom-check">✓</span>
+
+                    <div>
+                        <b>NUMBERS</b>
+                        <small>0 1 2 3 4 5</small>
+                    </div>
+                </label>
+
+
+                <label class="option">
+                    <input type="checkbox" id="symbols" checked>
+                    <span class="custom-check">✓</span>
+
+                    <div>
+                        <b>SYMBOLS</b>
+                        <small>! @ # $ % & *</small>
+                    </div>
+                </label>
+
+            </div>
+
+
+            <!-- Generate -->
+
+            <button class="generate" onclick="generatePassword()">
+
+                <span>GENERATE PASSWORD</span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
+
         </div>
 
-        <div class="option">
-            <label>
-                <input type="checkbox" id="lowercase" checked>
-                Lowercase (a-z)
-            </label>
-        </div>
 
-        <div class="option">
-            <label>
-                <input type="checkbox" id="numbers" checked>
-                Numbers (0-9)
-            </label>
-        </div>
+        <footer>
+            <span>● SYSTEM ONLINE</span>
+            <span>ENCRYPTION: AES-256</span>
+            <span>© CRYPTX</span>
+        </footer>
 
-        <div class="option">
-            <label>
-                <input type="checkbox" id="symbols" checked>
-                Symbols (!@#$%)
-            </label>
-        </div>
+    </main>
 
-        <button class="generate" onclick="generatePassword()">
-            Generate Password
-        </button>
-
-    </div>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>

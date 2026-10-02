@@ -1,66 +1,649 @@
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #222;
-    color: white;
+    min-height: 100vh;
+
+    background:
+        radial-gradient(circle at 20% 20%, #14213d 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #25103d 0%, transparent 35%),
+        #050609;
+
+    color: #e8e8f0;
+
+    font-family: 'JetBrains Mono', monospace;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 100vh;
+    overflow-x: hidden;
 }
+
+
+/* ---------------- BACKGROUND ---------------- */
+
+.grid {
+    position: fixed;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(#ffffff05 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff05 1px, transparent 1px);
+
+    background-size: 40px 40px;
+
+    mask-image: linear-gradient(to bottom, transparent, black, transparent);
+
+    pointer-events: none;
+}
+
+
+.glow {
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    filter: blur(100px);
+
+    opacity: .15;
+
+    pointer-events: none;
+}
+
+
+.glow1 {
+    background: #00f5ff;
+
+    top: -100px;
+    left: -100px;
+}
+
+
+.glow2 {
+    background: #b026ff;
+
+    bottom: -100px;
+    right: -100px;
+}
+
+
+/* ---------------- MAIN CARD ---------------- */
 
 .container {
-    background-color: #333;
+
+    width: min(680px, 94vw);
+
     padding: 30px;
-    width: 350px;
-    border-radius: 15px;
+
+    background: rgba(10, 12, 20, .78);
+
+    border: 1px solid #ffffff12;
+
+    border-radius: 24px;
+
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 30px 100px #00000080,
+        inset 0 1px #ffffff10;
+
+    position: relative;
+
+    overflow: hidden;
 }
+
+
+/* top neon line */
+
+.container::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #00f5ff,
+        #b026ff,
+        transparent
+    );
+
+    box-shadow: 0 0 20px #00f5ff;
+}
+
+
+/* ---------------- HEADER ---------------- */
+
+.top {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #777b91;
+}
+
+
+.status {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #00ff9d;
+
+    box-shadow: 0 0 12px #00ff9d;
+}
+
+
+.version {
+
+    margin-left: auto;
+
+    color: #55596c;
+}
+
+
+/* ---------------- TITLE ---------------- */
 
 h1 {
-    text-align: center;
+
+    font-size: clamp(42px, 9vw, 72px);
+
+    letter-spacing: -5px;
+
+    margin-top: 35px;
+
+    line-height: .9;
+
+    font-weight: 700;
 }
 
-.output {
-    display: flex;
-    gap: 5px;
-    margin-bottom: 20px;
+
+h1 span {
+
+    color: #00f5ff;
+
+    text-shadow:
+        0 0 10px #00f5ff,
+        0 0 30px #00f5ff55;
 }
 
-.output input {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-}
 
-.output button {
-    padding: 10px;
-}
+.subtitle {
 
-.option {
-    margin: 15px 0;
-}
-
-.option input[type="number"] {
-    width: 60px;
-    padding: 5px;
-}
-
-.generate {
-    width: 100%;
-    padding: 12px;
     margin-top: 15px;
 
-    background-color: #4CAF50;
-    color: white;
+    color: #666b80;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+}
+
+
+/* ---------------- PASSWORD ---------------- */
+
+.password-box {
+
+    margin-top: 35px;
+
+    padding: 18px;
+
+    border: 1px solid #ffffff12;
+
+    border-radius: 14px;
+
+    background: #ffffff03;
+}
+
+
+.password-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 9px;
+
+    letter-spacing: 2px;
+
+    color: #696e83;
+
+    margin-bottom: 10px;
+}
+
+
+#strengthText {
+
+    color: #00ff9d;
+}
+
+
+.password-display {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+
+.password-display input {
+
+    width: 100%;
+
+    min-width: 0;
 
     border: none;
-    border-radius: 8px;
 
-    font-size: 16px;
+    outline: none;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: clamp(16px, 3vw, 22px);
+
+    letter-spacing: 1px;
+}
+
+
+.password-display button {
+
+    width: 48px;
+
+    border: 1px solid #ffffff15;
+
+    border-radius: 10px;
+
+    background: #ffffff08;
+
+    color: #00f5ff;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+
+.password-display button:hover {
+
+    background: #00f5ff15;
+
+    box-shadow: 0 0 20px #00f5ff22;
+}
+
+
+/* strength */
+
+.strength-container {
+
+    height: 3px;
+
+    margin-top: 15px;
+
+    background: #ffffff0a;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+
+#strengthBar {
+
+    width: 70%;
+
+    height: 100%;
+
+    background: #00ff9d;
+
+    box-shadow: 0 0 10px #00ff9d;
+
+    transition: .4s;
+}
+
+
+/* ---------------- SETTINGS ---------------- */
+
+.settings {
+
+    margin-top: 30px;
+}
+
+
+.section-title {
+
+    display: flex;
+
+    gap: 12px;
+
+    align-items: center;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    color: #85899c;
+
+    margin-bottom: 18px;
+}
+
+
+.section-title span {
+
+    color: #00f5ff;
+
+    font-weight: bold;
+}
+
+
+/* length */
+
+.length-section {
+
+    padding: 18px;
+
+    background: #ffffff03;
+
+    border: 1px solid #ffffff0c;
+
+    border-radius: 12px;
+
+    margin-bottom: 28px;
+}
+
+
+.label-row {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 11px;
+
+    margin-bottom: 15px;
+}
+
+
+.label-row span {
+
+    color: #00f5ff;
+
+    font-weight: bold;
+}
+
+
+/* range */
+
+input[type="range"] {
+
+    width: 100%;
+
+    accent-color: #00f5ff;
+
     cursor: pointer;
 }
 
-.generate:hover {
-    background-color: #45a049;
+
+/* ---------------- OPTIONS ---------------- */
+
+.options {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+
+    margin-bottom: 25px;
 }
+
+
+.option {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 15px;
+
+    border: 1px solid #ffffff0d;
+
+    border-radius: 12px;
+
+    background: #ffffff03;
+
+    cursor: pointer;
+
+    transition: .25s;
+}
+
+
+.option:hover {
+
+    border-color: #00f5ff44;
+
+    background: #00f5ff08;
+
+    transform: translateY(-2px);
+}
+
+
+.option input {
+
+    display: none;
+}
+
+
+.custom-check {
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #555a6d;
+
+    border-radius: 5px;
+
+    color: transparent;
+
+    transition: .2s;
+}
+
+
+.option input:checked + .custom-check {
+
+    background: #00f5ff;
+
+    border-color: #00f5ff;
+
+    color: #050609;
+
+    box-shadow: 0 0 15px #00f5ff66;
+}
+
+
+.option b {
+
+    display: block;
+
+    font-size: 10px;
+
+    letter-spacing: 1px;
+}
+
+
+.option small {
+
+    display: block;
+
+    margin-top: 5px;
+
+    color: #555a6d;
+
+    font-size: 8px;
+}
+
+
+/* ---------------- GENERATE BUTTON ---------------- */
+
+.generate {
+
+    width: 100%;
+
+    padding: 17px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        100deg,
+        #00d9ff,
+        #7c3cff
+    );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-weight: bold;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px #00d9ff22;
+
+    transition: .25s;
+}
+
+
+.generate:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 40px #00d9ff44;
+}
+
+
+.generate:active {
+
+    transform: scale(.98);
+}
+
+
+.arrow {
+
+    font-size: 22px;
+
+    transition: .25s;
+}
+
+
+.generate:hover .arrow {
+
+    transform: translateX(5px);
+}
+
+
+/* ---------------- FOOTER ---------------- */
+
+footer {
+
+    margin-top: 25px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #ffffff0a;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    color: #484d60;
+}
+
+
+footer span:first-child {
+
+    color: #00ff9d;
+}
+
+
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 550px) {
+
+    .container {
+
+        padding: 22px;
+
+    }
+
+    .options {
+
+        grid-template-columns: 1fr;
+    }
+
+    footer span:nth-child(2) {
+
+        display: none;
+    }
+
+}
+
